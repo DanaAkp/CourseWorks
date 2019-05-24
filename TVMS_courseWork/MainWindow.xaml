@@ -1,0 +1,285 @@
+﻿<Window x:Class="TVMS_courseWork.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TVMS_courseWork"
+        mc:Ignorable="d"
+          Title="Курсовая работа: Опухоль молочной железы" Height="600" Width="1050" ResizeMode="CanResize" WindowStartupLocation="CenterScreen" Icon="Image/icon.png">
+
+    <TabControl>
+        <TabItem Header="Данные">
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="69*"/>
+                    <RowDefinition Height="350*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="299*"/>
+                    <ColumnDefinition Width="194*"/>
+                </Grid.ColumnDefinitions>
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" x:Name="scv"  Grid.ColumnSpan="2" Grid.Row="1"/>
+            </Grid>
+        </TabItem>
+        <TabItem Header="Описательная статистика">
+            <Grid x:Name="gdDiscrStat">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="74"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.ColumnSpan="2" Orientation="Horizontal">
+                    <StackPanel>
+                        <RadioButton Margin="0,10" x:Name="rbNorm" Content="Нормированные значения"/>
+                        <RadioButton Margin="0,5" x:Name="rbNotNorm" Content="Исходные значения"/>
+                    </StackPanel>
+                    <Button x:Name="btnDiscrStat" Click="BtnDiscrStat_Click" Grid.Column="1" Content="Вычислить" Margin="170,20"/>
+                </StackPanel>
+                <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Hidden" Grid.Column="1" Grid.Row="1">
+                    <StackPanel x:Name="stpDiscrStat" Orientation="Horizontal"/>
+                </ScrollViewer>
+                <TextBlock x:Name="tblDiscrStat" Grid.Row="1" Width="150"/>
+            </Grid>
+        </TabItem>
+        <TabItem Header="Распределение">
+            <Grid x:Name="gdDistribution">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="74*"/>
+                    <RowDefinition Height="40*"/>
+                    <RowDefinition Height="350*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="180"/>
+                    <ColumnDefinition Width="299*"/>
+                    <ColumnDefinition Width="194*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Нормальным распределение считается при значении не превосходящeм 43.2"/>
+                <ScrollViewer Grid.ColumnSpan="3" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden" Grid.Row="1" Grid.RowSpan="2" x:Name="scvDistribution">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel>
+                            <TextBlock Text="     "/>
+                        </StackPanel>
+                        <StackPanel x:Name="stpDistrParams">
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBlock Text="     "/>
+                        </StackPanel>
+                        <StackPanel x:Name="stpDistr">
+                            <TextBlock HorizontalAlignment="Center"  Text="Нормальность распрделения"/>
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBlock Text="     "/>
+                        </StackPanel>
+                        <StackPanel x:Name="stpDistrX_2">
+                            <TextBlock HorizontalAlignment="Center"  Text="Коэффициент"/>
+                        </StackPanel>
+                    </StackPanel>
+                </ScrollViewer>
+            </Grid>
+        </TabItem>
+        <TabItem Header="Корреляционный анализ">
+            <TabControl TabStripPlacement="Left">
+                <TabItem Header="Парные">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="69*"/>
+                            <RowDefinition Height="350*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="25*"/>
+                            <ColumnDefinition Width="19*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Margin="20,0" Grid.Column="1">
+                            <StackPanel Height="30" Orientation="Horizontal">
+                                <TextBlock Background="Red" Height="20" Width="20"/>
+                                <Label Content="0,7 - 1"/>
+                            </StackPanel>
+                            <StackPanel Height="30"  Orientation="Horizontal">
+                                <TextBlock Background="Green" Height="20" Width="20"/>
+                                <Label Content="0,5 - 0,7"/>
+                            </StackPanel>
+                            <StackPanel Height="30" Orientation="Horizontal">
+                                <TextBlock Background="Yellow" Height="20" Width="20"/>
+                                <Label Content="0,3 - 0,5"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <TextBox x:Name="tbMatrix" Grid.RowSpan="2" />
+                        <Canvas x:Name="cnvMain" Grid.Row="1" Grid.Column="1" Margin="50,76,38,76">
+                        </Canvas>
+                        <Label Content="X9" Grid.Column="1" Grid.Row="1" Margin="32,159,341,252"/>
+                        <Label Content="X1" Grid.Row="1" Grid.Column="1" Margin="189,48,151,355"/>
+                        <Label Content="X10" Grid.Column="1" Grid.Row="1" Margin="70,93,284,313"/>
+                        <Label Content="X7" Grid.Row="1" Grid.Column="1" Margin="70,321,282,88" RenderTransformOrigin="0.5,0.5"/>
+                        <Label Content="X3" Grid.Column="1" Grid.Row="1" Margin="346,159,27,252"/>
+                        <Label Content="X2" Grid.Column="1" Grid.Row="1" Margin="304,93,69,323"/>
+                        <Label Content="X4"  Grid.Column="1" Grid.Row="1" Margin="346,254,27,153"/>
+                        <Label Content="X5"  Grid.Column="1" Grid.Row="1" Margin="311,321,57,88"/>
+                        <Label Content="X6"  Grid.Column="1" Grid.Row="1" Margin="191,376,182,38"/>
+                        <Label Content="X8"  Grid.Column="1" Grid.Row="1" Margin="32,254,341,153"/>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Частные">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="69*"/>
+                            <RowDefinition Height="350*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="25*"/>
+                            <ColumnDefinition Width="19*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Margin="20,0" Grid.Column="1">
+                            <StackPanel Height="30" Orientation="Horizontal">
+                                <TextBlock Background="Red" Height="20" Width="20"/>
+                                <Label Content="0,7 - 1"/>
+                            </StackPanel>
+                            <StackPanel Height="30"  Orientation="Horizontal">
+                                <TextBlock Background="Green" Height="20" Width="20"/>
+                                <Label Content="0,5 - 0,7"/>
+                            </StackPanel>
+                            <StackPanel Height="30" Orientation="Horizontal">
+                                <TextBlock Background="Yellow" Height="20" Width="20"/>
+                                <Label Content="0,3 - 0,5"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <TextBox x:Name="tbMatrix2" Grid.RowSpan="2"/>
+                        <Canvas x:Name="cnvMainPrivate" Grid.Row="1" Grid.Column="1" Margin="50,76,38,76">
+                        </Canvas>
+                        <Label Content="X9" Grid.Column="1" Grid.Row="1" Margin="32,159,341,252"/>
+                        <Label Content="X1" Grid.Row="1" Grid.Column="1" Margin="189,48,151,355"/>
+                        <Label Content="X10" Grid.Column="1" Grid.Row="1" Margin="70,93,284,313"/>
+                        <Label Content="X7" Grid.Row="1" Grid.Column="1" Margin="70,321,282,88" RenderTransformOrigin="0.5,0.5"/>
+                        <Label Content="X3" Grid.Column="1" Grid.Row="1" Margin="346,159,27,252"/>
+                        <Label Content="X2" Grid.Column="1" Grid.Row="1" Margin="304,93,69,323"/>
+                        <Label Content="X4"  Grid.Column="1" Grid.Row="1" Margin="346,254,27,153"/>
+                        <Label Content="X5"  Grid.Column="1" Grid.Row="1" Margin="311,321,57,88"/>
+                        <Label Content="X6"  Grid.Column="1" Grid.Row="1" Margin="191,376,182,38"/>
+                        <Label Content="X8"  Grid.Column="1" Grid.Row="1" Margin="32,254,341,153"/>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Множественныe">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="69*"/>
+                            <RowDefinition Height="350*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="617*"/>
+                            <ColumnDefinition Width="369*"/>
+                        </Grid.ColumnDefinitions>
+                        <ScrollViewer Grid.ColumnSpan="3" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden" Grid.Row="1" Grid.RowSpan="2" x:Name="scvKorr">
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel x:Name="stpKorrParams">
+                                </StackPanel>
+                                <StackPanel>
+                                    <TextBlock Text="     "/>
+                                </StackPanel>
+                                <StackPanel x:Name="stpKorrR">
+                                    <TextBlock HorizontalAlignment="Center"  Text="Множественный коэффициент"/>
+                                </StackPanel>
+                                <StackPanel>
+                                    <TextBlock Text="     "/>
+                                </StackPanel>
+                                <StackPanel x:Name="stpKorrDeterm">
+                                    <TextBlock HorizontalAlignment="Center"  Text="Коэффициент детерминации"/>
+                                </StackPanel>
+                                <StackPanel>
+                                    <TextBlock Text="     "/>
+                                </StackPanel>
+                                <StackPanel x:Name="stpKorrKoeffZN">
+                                    <TextBlock HorizontalAlignment="Center"  Text="Коэффициент значимости"/>
+                                </StackPanel>
+                                <StackPanel>
+                                    <TextBlock Text="     "/>
+                                </StackPanel>
+                                <StackPanel x:Name="stpKorrZN">
+                                    <TextBlock HorizontalAlignment="Center"  Text="Значимость"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </ScrollViewer>
+                    </Grid>
+                </TabItem>
+            </TabControl>
+        </TabItem>
+        <TabItem Header="Регрессионный анализ">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="75"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="270"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="299*"/>
+                    <ColumnDefinition Width="194*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Name="tblRegrURAVN" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" FontWeight="Bold" FontSize="14"/>
+                <StackPanel Grid.Row="2" Grid.ColumnSpan="2">
+                    <TextBlock Height="20"/>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Введите значения параметров: "/>
+                        <TextBox x:Name="tbPrognozKoeff" Width="400"/>
+                        <Button x:Name="btnRegress" Click="BtnRegress_Click" Grid.Column="1" Content="Вычислить" Margin="300,0"/>
+                    </StackPanel>
+                    <TextBlock Height="20"/>
+                    <TextBlock x:Name="tblPrognoz"/>
+                </StackPanel>
+                <ScrollViewer  HorizontalAlignment="Center" Grid.ColumnSpan="3" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Hidden" Grid.Row="1"  x:Name="scvRegrY">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel x:Name="stpRegrToch">
+                            <TextBlock HorizontalAlignment="Center"  Text=" Точечные оценки"/>
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBlock Text="     "/>
+                        </StackPanel>
+                        <StackPanel x:Name="stpRegrInterv">
+                            <TextBlock HorizontalAlignment="Center"  Text="Интервальные оценки"/>
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBlock Text="     "/>
+                        </StackPanel>
+                        <StackPanel x:Name="stpRegrKoeffZN">
+                            <TextBlock HorizontalAlignment="Center"  Text="Коэффициент значимости"/>
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBlock Text="     "/>
+                        </StackPanel>
+                        <StackPanel x:Name="stpRegrZN">
+                            <TextBlock HorizontalAlignment="Center"  Text="Значимость"/>
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBlock Text="     "/>
+                        </StackPanel>
+                        <StackPanel x:Name="stpRegrY">
+                            <TextBlock HorizontalAlignment="Center"  Text="Y"/>
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBlock Text="     "/>
+                        </StackPanel>
+                        <StackPanel x:Name="stpRegrY_">
+                            <TextBlock HorizontalAlignment="Center"  Text="Y^"/>
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBlock Text="     "/>
+                        </StackPanel>
+                        <StackPanel x:Name="stpRegrY_Y">
+                            <TextBlock HorizontalAlignment="Center"  Text="Y-Y^"/>
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBlock Text="     "/>
+                        </StackPanel>
+                        <StackPanel x:Name="stpRegrIntervY_">
+                            <TextBlock HorizontalAlignment="Center"  Text="Интервальные оценки"/>
+                        </StackPanel>
+                    </StackPanel>
+                </ScrollViewer>
+            </Grid>
+
+        </TabItem>
+        <TabItem>
+            <TextBox x:Name="tb"/>
+        </TabItem>
+    </TabControl>
+</Window>
